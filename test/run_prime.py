@@ -8,6 +8,9 @@ def run_seq(n):
 def run_mpi(n):
     subprocess.call(["mpiexec", "-n" , "8", "../prime_mpi/prime", str(n)])
 
+def run_mpi_hostfile(n):
+    subprocess.call(["mpirun", "-n", "4", "-hostfile", "../prime_mpi/hostfile", "../prime_mpi/prime", str(n)])
+
 def run(n):
     start_time = time.time();
     run_seq(n)
@@ -20,6 +23,12 @@ def run(n):
     end_time = time.time()
 
     print("mpi prime program costs %s seconds" % (end_time - start_time))
+
+    start_time = time.time()
+    run_mpi_hostfile(n)
+    end_time = time.time()
+
+    print("mpi prime program using hostfile costs %s seconds" % (end_time - start_time))
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
