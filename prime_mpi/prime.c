@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
 
   /* pc=4; */    /* Assume (2,3,5,7) are counted here */
   
-  int local_pc;
+  int local_pc = 0;
   int local_fundone;
   int size;
   int rank;
