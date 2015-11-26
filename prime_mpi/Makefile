@@ -1,7 +1,7 @@
 all: prime
 
 prime: prime.c
-	gcc prime.c -o prime -lm
+	mpicc prime.c -o prime -lm
 
-clean:
+clean: 
 	rm prime

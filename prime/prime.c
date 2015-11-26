@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
   printf("Starting. Numbers to be scanned= %lld\n",limit);
 
   pc=4;     /* Assume (2,3,5,7) are counted here */
-
+  
   for (n=11; n<=limit; n=n+2) {
     if (isprime(n)) {
       pc++;
