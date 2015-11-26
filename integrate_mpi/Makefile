@@ -1,4 +1,7 @@
 all: integrate
 
 integrate: integrate.c
-	gcc integrate.c -o integrate -lm
+	mpicc $< -o $@ -lm
+
+clean:
+	rm integrate

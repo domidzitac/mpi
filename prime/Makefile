@@ -1,7 +1,7 @@
 all: prime
 
 prime: prime.c
-	gcc prime.c -o prime -lm
+	gcc $< -o $@ -lm
 
 clean:
 	rm prime
