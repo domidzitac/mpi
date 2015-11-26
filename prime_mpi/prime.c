@@ -19,14 +19,14 @@ int isprime(int n) {
 
 int main(int argc, char *argv[])
 {
-  int pc,       /* prime counter */
-      foundone; /* most recent prime found */
+  int pc = 0;       /* prime counter */
+  long long int foundone; /* most recent prime found */
   long long int n, limit;
 
   /* pc=4; */    /* Assume (2,3,5,7) are counted here */
   
   int local_pc = 0;
-  int local_fundone;
+  long long int local_fundone;
   int size;
   int rank;
   long long int total;
@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
   /*        int root,              */
   /*        MPI_Comm comm)         */
 
-  MPI_Bcast(&limit, 1, MPI_LONG, 0, MPI_COMM_WORLD);
+  MPI_Bcast(&limit, 1, MPI_UNSIGNED_LONG, 0, MPI_COMM_WORLD);
 
   total = limit - 11 + 1;
   workload = total / size;
@@ -64,7 +64,6 @@ int main(int argc, char *argv[])
   /* if (rank == 0) { */
     /* printf("workload = %llu\n", workload); */
   /* } */
-
 
   if (rank == size -1) {
     local_limit = limit;
@@ -89,16 +88,10 @@ int main(int argc, char *argv[])
   /*        MPI_Comm comm)         */
 
   MPI_Reduce(&local_pc, &pc, 1, MPI_INT, MPI_SUM, 0, MPI_COMM_WORLD);
-  MPI_Reduce(&local_fundone, &foundone, 1, MPI_LONG, MPI_MAX, 0, MPI_COMM_WORLD);
+  MPI_Reduce(&local_fundone, &foundone, 1, MPI_UNSIGNED_LONG, MPI_MAX, 0, MPI_COMM_WORLD);
 
-  /* for (n=11; n<=limit; n=n+2) { */
-    /* if (isprime(n)) { */
-      /* pc++; */
-      /* foundone = n; */
-    /* }			 */
-  /* } */
   if (rank == 0) {
-    printf("Done. Largest prime is %d Total primes %d\n",foundone,pc+4);
+    printf("Done. Largest prime is %llu Total primes %d\n",foundone,pc+4);
   }
   MPI_Finalize();
   return 0;
