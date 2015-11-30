@@ -29,13 +29,17 @@ int main(int argc, char **argv) {
   /*        MPI_Datatype datatype, */
   /*        int root,              */
   /*        MPI_Comm comm)         */
-
   MPI_Bcast(&num_intervals, 1, MPI_UNSIGNED_LONG, 0, MPI_COMM_WORLD);
 
   rect_width = PI / num_intervals;
   workload = num_intervals / size;  
   local_l = 1 + workload * rank;
   local_r = 1 + workload * (rank + 1);
+
+  if (rank == size - 1) {
+    local_r = num_intervals + 1; 
+  }
+
 
   /* printf("rank = %d workload = %llu local_l = %llu local_r = %llu\n", rank, workload, local_l, local_r); */
 
@@ -55,7 +59,6 @@ int main(int argc, char **argv) {
   /*        MPI_Op operator,       */
   /*        int root,              */
   /*        MPI_Comm comm)         */
-
   MPI_Reduce(&local_sum, &sum, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
 
   if (rank == 0) {
