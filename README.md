@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
 ```
 
 ## Statement of Problem 2
-In this problem, you need to use MPI to parallelize the following serial program ``integrate.c``, which integrates function sin(X) over the range from 0 to 2 using N intervals, where N is an argument of the program.
+In this problem, you need to use MPI to parallelize the following serial program ``integrate.c``, which integrates function sin(X) over the range from 0 to pi using N intervals, where N is an argument of the program.
 
 ```c
 #include <stdio.h>
@@ -80,3 +80,27 @@ int main(int argc, char **argv)
 }   
 
 ```
+
+## Evaluation
+
+### Prime
+
+|number of iterations |20000000                |200000000
+|---------------------|------------------------|------------------------|
+|sequential           |14.3597421646 (seconds) |376.177364111 (seconds) |
+|mpi in single machine|9.53690385818 (seconds) |151.067785978 (seconds) |
+|mpi in multi machine |5.39104700089 (seconds) |124.963972092 (seconds) |
+
+### Integrate
+
+|number of iterations |200000000               |2000000000 
+|---------------------|------------------------|------------------------|
+|sequential           |10.6179821491 (seconds) |98.610033989 (seconds)  |
+|mpi in single machine|3.88602399826 (seconds) |31.2693638802 (seconds) |
+|mpi in multi machine |3.93596291542 (seconds) |31.0279841423 (seconds) |
+
+
+
+
+
+
