@@ -24,11 +24,11 @@ def run(n):
 
     print("mpi integrate program costs %s seconds" % (end_time - start_time))
 
-    #  start_time = time.time()
-    #  run_mpi_hostfile(n)
-    #  end_time = time.time()
+    start_time = time.time()
+    run_mpi_hostfile(n)
+    end_time = time.time()
 
-    #  print("mpi integrate program using hostfile costs %s seconds" % (end_time - start_time))
+    print("mpi integrate program using hostfile costs %s seconds" % (end_time - start_time))
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
